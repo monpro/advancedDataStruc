@@ -24,11 +24,11 @@ public class LinkedList<E> {
         }
     }
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList(){
-        head = null;
+        dummyHead = new Node(null, null);
         size = 0;
     }
 
@@ -44,33 +44,102 @@ public class LinkedList<E> {
 //        Node node = new Node(e);
 //        node.next = head;
 //        head = node;
-        head = new Node(e, head);
-        size ++;
+        add(0,e);
     }
 
     public void add(int index, E e){
         if(index < 0 || index > size){
             throw new IllegalArgumentException("Add failed. Illegal index");
         }
-
-        if(index == 0){
-            addFirst(e);
+        Node prev = dummyHead;
+        for(int i = 0; i  < index; i++){
+            prev = prev.next;
         }
-        else{
-            Node prev = head;
-            for(int i = 0; i  < index - 1; i++){
-                prev = prev.next;
-            }
 //            Node node = new Node(e);
 //            node.next = prev.next;
 //            prev.next = node;
-            prev.next = new Node(e, prev.next);
-            size ++;
-        }
+        prev.next = new Node(e, prev.next);
+        size ++;
     }
 
     public void addLast(E e){
         add(size, e);
     }
+
+    public E get(int index){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Add failed. Illegal index");
+        }
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i++){
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
+    public E getLast(){
+        return get(size - 1);
+    }
+
+    public void set(int index, E e){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Add failed. Illegal index");
+        }
+
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i++){
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    public boolean contains(E e){
+        Node cur = dummyHead.next;
+        while(cur != null){
+            if(cur.e.equals(e)){
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    public E remove(int index){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Add failed. Illegal index");
+        }
+
+        Node prev = dummyHead;
+        for(int i = 0; i < index; i++){
+            prev = prev.next;
+        }
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size --;
+        return retNode.e;
+    }
+
+    public E removeFirst(){
+        return remove(0);
+    }
+
+    public E removeLast(){
+        return remove(size - 1);
+    }
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        for(Node cur = dummyHead.next; cur != null; cur = cur.next){
+            result.append(cur + "->");
+        }
+        result.append("NULL");
+        return result.toString();
+    }
+
 
 }
