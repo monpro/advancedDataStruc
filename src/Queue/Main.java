@@ -1,13 +1,15 @@
+package Queue;
+
 import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
         int opCount = 50000;
-        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        ArrayQueue arrayQueue = new ArrayQueue();
         double time_1 = testQueue(arrayQueue,opCount);
         System.out.println(String.format("Array Queue will consume time: %f\n",time_1));
-        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        LoopQueue<Integer> loopQueue = new LoopQueue<Integer>();
         double time_2 = testQueue(loopQueue, opCount);
 
         System.out.println(String.format("Loop Queue will consume time : %f\n",time_2));
