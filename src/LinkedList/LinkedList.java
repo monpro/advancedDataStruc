@@ -41,9 +41,6 @@ public class LinkedList<E> {
     }
 
     public void addFirst(E e){
-//        Node node = new Node(e);
-//        node.next = head;
-//        head = node;
         add(0,e);
     }
 
@@ -55,9 +52,6 @@ public class LinkedList<E> {
         for(int i = 0; i  < index; i++){
             prev = prev.next;
         }
-//            Node node = new Node(e);
-//            node.next = prev.next;
-//            prev.next = node;
         prev.next = new Node(e, prev.next);
         size ++;
     }
@@ -122,6 +116,22 @@ public class LinkedList<E> {
         retNode.next = null;
         size --;
         return retNode.e;
+    }
+
+    public void removeElement(E e){
+        Node prev = dummyHead;
+        while (prev.next != null){
+            if(prev.next.e.equals(e)){
+                break;
+            }
+            prev = prev.next;
+        }
+        if(prev.next != null){
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+
+        }
     }
 
     public E removeFirst(){
