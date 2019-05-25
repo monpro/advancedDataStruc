@@ -30,7 +30,14 @@ public class Array<E> {
     public void addLast(E e){
        add(size, e);
     }
+    public void swap(int i, int j){
+        if(i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("index is illegal");
 
+        E value = data[i];
+        data[i] = data[j];
+        data[j] = value;
+    }
     public void add(int index, E e){
         if(index > size || index < 0){
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size");
