@@ -67,10 +67,11 @@ public class Array<E> {
         return get(data.length - 1);
     }
 
-    void set(int index, E e){
+    public void set(int index, E e){
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("Set failed. Index is illegal");
         }
+        data[index] = e;
     }
 
     public boolean contains(E e){
