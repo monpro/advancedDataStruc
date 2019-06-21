@@ -13,6 +13,13 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<E>();
     }
 
+    public MaxHeap(E[] arr){
+        data = new Array<>(arr);
+        for(int i = parent(arr.length - 1); i >= 0; i --){
+            siftDown(i);
+        }
+    }
+
     public int size(){
         return data.getSize();
     }
@@ -28,11 +35,11 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     private int leftChild(int index){
-        return index + 1;
+        return index * 2 + 1;
     }
 
     private int rightChild(int index){
-        return index + 2;
+        return index * 2 + 2;
     }
 
     public void add(E e){
@@ -61,13 +68,13 @@ public class MaxHeap<E extends Comparable<E>> {
         return ret;
     }
 
-    public void siftDown(int k){
+    private void siftDown(int k){
         while (leftChild(k) < data.getSize()){
             int j = leftChild(k);
             if(j + 1 < data.getSize() && data.get(j + 1).compareTo(data.get(j)) > 0){
-                j = rightChild(k);
+                j = j + 1;
             }
-            if(data.get(k).compareTo(data.get(j)) > 0){
+            if(data.get(k).compareTo(data.get(j)) >= 0){
                 break;
             }
             data.swap(k,j);
