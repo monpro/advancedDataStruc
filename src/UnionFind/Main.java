@@ -31,16 +31,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int size = 100000;
-        int m = 100000;
+        int size = 100000000;
+        int m = 100000000;
 
-        UnionFindOriginal uf1 = new UnionFindOriginal(size);
-        System.out.println("UnionFindOriginal : " + testUF(uf1, m) + " s");
+        // UnionFindOriginal uf1 = new UnionFindOriginal(size);
+        // System.out.println("UnionFindOriginal : " + testUF(uf1, m) + " s");
 
-        UnionFindTree uf2 = new UnionFindTree(size);
-        System.out.println("UnionFindTree : " + testUF(uf2, m) + " s");
+        // UnionFindTree uf2 = new UnionFindTree(size);
+        // System.out.println("UnionFindTree : " + testUF(uf2, m) + " s");
 
         UnionFindOptimizeHeight uf3 = new UnionFindOptimizeHeight(size);
         System.out.println("UnionFindOptimizeHeight : " + testUF(uf3, m) + " s");
+
+        UnionFindOptimizeRank uf4 = new UnionFindOptimizeRank(size);
+        System.out.println("UnionFindOptimizeRank : " + testUF(uf4, m) + " s");
     }
 }
