@@ -1,3 +1,5 @@
+package UnionFind;
+
 public class UnionFindOriginal implements UF {
 
     private int[] id;    // is an array
