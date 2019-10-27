@@ -28,6 +28,7 @@ public class UnionFindOptimizeHeight implements UF{
             throw new IllegalArgumentException("p is out of bound.");
 
         while( p != parent[p] )
+            parent[p] = parent[parent[p]];
             p = parent[p];
         return p;
     }
